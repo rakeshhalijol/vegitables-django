@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <title>{{ retrive.name }}</title>
+</head>
+<body>
+
+<img src="/media/{{ retrive.img }}"><br>
+<h1>{{ retrive.name }}</h1> <br>
+<p>{{ retrive.disc }}</p> <br>
+<h1>price:- {{ retrive.price }}</h1>
+<button type="submit"><a href="/cart/{{ retrive.id }}/">Order now</a> </button>
+<div>
+    <h1>REVIEWS</h1>
+
+    <form method="post" action="/review/{{ retrive.id }}/">{% csrf_token %}
+        <textarea name="review_section"></textarea>
+        <input type="submit" value="Submit">
+    </form>
+
+<!--    {% if reviews.review %}-->
+<!--    <div>-->
+<!--        <h1>{{ user.username }}:- </h1>{{ get_text }}-->
+<!--    </div>-->
+<!--    {% endif %}-->
+    {% for review in reviews %}
+    <div class="main-reviews card mb-3">
+      <div class="card-body">
+        <div class="user_details" style="display: flex; border-bottom: 1px solid rgb(31, 30, 30);">
+          <h3 class="mr-3" id="re1">{{ review.user.username }} </h3>
+          <p class="mt-2" id="re2">{{ review.posted_on }}</p>
+        </div>
+          <p>{{ review.review }}</p>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

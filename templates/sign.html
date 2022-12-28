@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signin</title>
+</head>
+<body>
+{% for msg in messages %}
+<h5>{{ msg }}</h5>
+{% endfor %}
+<form method="post" action="/signin/">{% csrf_token %}
+<input type="text" placeholder="Username" name="sname"><br>
+ <input type="email" placeholder="Email" name="semail"><br>
+<input type="password" placeholder="Password" name="spass1"><br>
+<input type="password" placeholder="Confirm Password" name="spass2"><br>
+<button type="submit" value="Submit">Submit</button>
+    Alreay have an account?<a href="/login/">Login</a>.
+</form>
+</body>
+</html>
